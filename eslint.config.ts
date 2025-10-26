@@ -16,7 +16,20 @@ export default defineConfigWithVueTs(
 
   globalIgnores(['**/dist/**', '**/dist-ssr/**', '**/coverage/**']),
 
-  pluginVue.configs['flat/essential'],
+  pluginVue.configs['flat/recommended'],
   vueTsConfigs.recommended,
   skipFormatting,
+
+  {
+    rules: {
+      'vue/no-deprecated-data-object-declaration': 'error',
+      'vue/no-deprecated-destroyed-lifecycle': 'error',
+      'vue/no-deprecated-delete-set': 'error',
+      'vue/no-deprecated-dollar-listeners-api': 'error',
+      'vue/no-deprecated-dollar-scopedslots-api': 'error',
+      'vue/no-deprecated-events-api': 'error',
+      'vue/no-deprecated-html-element-is': 'error',
+      'vue/no-deprecated-model-definition': ['error', { allowVue3Compat: false }],
+    }
+  }
 )
