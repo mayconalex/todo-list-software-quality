@@ -52,7 +52,7 @@
 
         <ul>
             <li v-for="todo in todos" :key="todo.id" :class="{ completed: todo.completed }">
-                <input type="checkbox" v-model="todo.completed" />
+                <input v-model="todo.completed" type="checkbox" />
                 <span>{{ todo.text }}</span>
                 <button @click="removeTodo(todo)">Remover</button>
             </li>
