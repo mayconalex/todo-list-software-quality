@@ -32,6 +32,18 @@ function addTodo() {
   }
 }
 
+// eslint-disable-next-line
+function addTodoDuplicado() {
+  if (newTodo.value.trim() !== '') {
+    todos.value.push({
+      id: id++,
+      text: newTodo.value,
+      completed: false,
+    })
+    newTodo.value = '' // Limpa o campo de input após adicionar
+  }
+}
+
 /**
  * Remove uma tarefa da lista com base no seu id.
  * @param {Todo} todo - O objeto da tarefa a ser removida.
