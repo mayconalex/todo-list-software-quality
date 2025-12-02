@@ -15,7 +15,10 @@
     "lint": "eslint . --fix --cache",
     "format": "prettier --write src/",
     "format:check": "prettier --check src",
-    "cpd": "jscpd src/ --threshold 0 --min-lines 5 --ignore \"**/*.test.ts\""
+    "cpd": "jscpd src/ --threshold 0 --min-lines 5 --ignore \"**/*.test.ts\"",
+    "uml:puml": "tplant --input src/domain/**/*.ts --output uml.puml",
+    "uml:png": "puml generate uml.puml -o uml.png",
+    "uml:generate": "npm run uml:puml && npm run uml:png"
   },
   "dependencies": {
     "vue": "^3.5.22",
