@@ -15,7 +15,10 @@
     "lint": "eslint . --fix --cache",
     "format": "prettier --write src/",
     "format:check": "prettier --check src",
-    "cpd": "jscpd src/ --threshold 0 --min-lines 5 --ignore \"**/*.test.ts\""
+    "cpd": "jscpd src/ --threshold 0 --min-lines 5 --ignore \"**/*.test.ts\"",
+    "uml:puml": "tplant --input src/domain/**/*.ts --output uml.puml",
+    "uml:png": "puml generate uml.puml -o uml.png",
+    "uml:generate": "npm run uml:puml && npm run uml:png"
   },
   "dependencies": {
     "vue": "^3.5.22",
@@ -32,8 +35,10 @@
     "eslint-plugin-vue": "~10.6.2",
     "jiti": "^2.6.1",
     "jscpd": "^4.0.5",
+    "node-plantuml": "^0.9.0",
     "npm-run-all2": "^8.0.4",
     "prettier": "3.6.2",
+    "tplant": "^3.1.3",
     "typescript": "~5.9.0",
     "vite": "^7.2.6",
     "vite-plugin-vue-devtools": "^8.0.3",
