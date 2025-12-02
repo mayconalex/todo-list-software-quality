@@ -14,7 +14,8 @@
     "type-check": "vue-tsc --build",
     "lint": "eslint . --fix --cache",
     "format": "prettier --write src/",
-    "format:check": "prettier --check src"
+    "format:check": "prettier --check src",
+    "cpd": "jscpd src/ --threshold 0 --min-lines 5 --ignore \"**/*.test.ts\""
   },
   "dependencies": {
     "vue": "^3.5.22",
