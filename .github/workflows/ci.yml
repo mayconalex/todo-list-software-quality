@@ -40,6 +40,9 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
+      - name: Install Graphviz
+        run: sudo apt-get update && sudo apt-get install -y graphviz
+
       - name: Generate UML Diagram
         run: npm run uml:generate
 
