@@ -33,22 +33,6 @@ function addTodo() {
 }
 
 /**
- * Adiciona uma nova tarefa à lista.
- * A função é chamada quando o formulário é submetido.
- * Não adiciona tarefas com texto vazio.
- */
-function addTodoDuplicado() {
-  if (newTodo.value.trim() !== '') {
-    todos.value.push({
-      id: id++,
-      text: newTodo.value,
-      completed: false,
-    })
-    newTodo.value = ''
-  }
-}
-
-/**
  * Remove uma tarefa da lista com base no seu id.
  * @param {Todo} todo - O objeto da tarefa a ser removida.
  */
@@ -65,14 +49,6 @@ function removeTodo(todo: Todo) {
       <input v-model="newTodo" placeholder="Adicionar uma nova tarefa..." />
       <button>Adicionar</button>
     </form>
-
-    <ul>
-      <li v-for="todo in todos" :key="todo.id" :class="{ completed: todo.completed }">
-        <input type="checkbox" v-model="todo.completed" />
-        <span>{{ todo.text }}</span>
-        <button @click="removeTodo(todo)">Remover</button>
-      </li>
-    </ul>
 
     <ul>
       <li v-for="todo in todos" :key="todo.id" :class="{ completed: todo.completed }">
