@@ -33,3 +33,18 @@ jobs:
 
       - name: Build project
         run: npm run build
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Generate UML Diagram
+        run: npm run uml:generate
+
+      - name: Upload UML Diagram
+        uses: actions/upload-artifact@v4
+        with:
+          name: class-diagram
+          path: uml.png
