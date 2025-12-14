@@ -1,16 +1,31 @@
 import type { Todo } from './todo'
 
+/* eslint-disable no-magic-numbers */
+export enum Prioridade {
+    BAIXA = 1,
+    MEDIA = 2,
+    ALTA = 3,
+}
+/* eslint-enable no-magic-numbers */
+
+export interface FiltroTodo {
+    termoBusca?: string
+    apenasPendentes?: boolean
+    prioridadeMinima?: Prioridade
+    ordenarPorPrioridade?: boolean
+}
+
 export class TodoList {
     public todos: Todo[] = []
     private nextId = 0
 
     constructor() {
-        this.add('Aprender Vue.js', 3)
-        this.add('Criar um projeto incrível', 2)
-        this.add('Dormir um pouco', 1)
+        this.add('Aprender Vue.js', Prioridade.ALTA)
+        this.add('Criar um projeto incrível', Prioridade.MEDIA)
+        this.add('Dormir um pouco', Prioridade.BAIXA)
     }
 
-    public add(text: string, priority: number = 1): void {
+    public add(text: string, priority: Prioridade = Prioridade.BAIXA): void {
         if (text.trim() !== '') {
             this.todos.push({
                 id: this.nextId++,
@@ -29,44 +44,31 @@ export class TodoList {
         return this.todos
     }
 
-    public filtrarTarefas(
-        termoBusca: string,
-        apenasPendentes: boolean,
-        prioridadeMinima: number,
-        ordenarPorPrioridade: boolean,
-    ): Todo[] {
-        let resultado = this.todos
+    private possuiTexto(t: Todo, termo?: string): boolean {
+        if (!termo) return true
+        return t.text.includes(termo)
+    }
 
-        // Filtro de texto
-        if (termoBusca !== '') {
-            resultado = resultado.filter((t) => t.text.includes(termoBusca))
-        }
+    private ehPendente(t: Todo, apenasPendentes?: boolean): boolean {
+        if (!apenasPendentes) return true
+        return !t.completed
+    }
 
-        // Filtro de status
-        if (apenasPendentes) {
-            resultado = resultado.filter((t) => !t.completed)
-        }
+    private temPrioridade(t: Todo, minima?: Prioridade): boolean {
+        if (!minima) return true
+        return t.priority >= minima
+    }
 
-        // Filtro de prioridade
-        if (prioridadeMinima > 0) {
-            resultado = resultado.filter((t) => {
-                if (prioridadeMinima === 3) {
-                    return t.priority === 3
-                } else if (prioridadeMinima === 2) {
-                    return t.priority >= 2
-                } else {
-                    return true
-                }
-            })
-        }
+    public filtrarTarefas(filtro: FiltroTodo): Todo[] {
+        let resultado = this.todos.filter(
+            (t) =>
+                this.possuiTexto(t, filtro.termoBusca) &&
+                this.ehPendente(t, filtro.apenasPendentes) &&
+                this.temPrioridade(t, filtro.prioridadeMinima),
+        )
 
-        // Ordenação
-        if (ordenarPorPrioridade) {
-            resultado.sort((a, b) => {
-                if (a.priority > b.priority) return -1
-                if (a.priority < b.priority) return 1
-                return 0
-            })
+        if (filtro.ordenarPorPrioridade) {
+            resultado = [...resultado].sort((a, b) => b.priority - a.priority)
         }
 
         return resultado
