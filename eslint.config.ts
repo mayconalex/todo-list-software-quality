@@ -19,4 +19,15 @@ export default defineConfigWithVueTs(
   pluginVue.configs['flat/essential'],
   vueTsConfigs.recommended,
   skipFormatting,
+
+  {
+    rules: {
+      // Smell: Complexidade Ciclomática
+      'complexity': ['error', 4], // eslint-disable-line no-magic-numbers
+      // Smell: Muitos Parâmetros
+      'max-params': ['error', 3], // eslint-disable-line no-magic-numbers
+      // Smell: Números Mágicos
+      'no-magic-numbers': ['error', { ignore: [0, 1, -1], ignoreArrayIndexes: true }] 
+    }
+  }
 )
