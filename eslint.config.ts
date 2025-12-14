@@ -23,7 +23,7 @@ export default defineConfigWithVueTs(
   {
     rules: {
       // Smell: Complexidade Ciclomática
-      'complexity': ['error', 5], // eslint-disable-line no-magic-numbers
+      'complexity': ['error', 4], // eslint-disable-line no-magic-numbers
       // Smell: Muitos Parâmetros
       'max-params': ['error', 3], // eslint-disable-line no-magic-numbers
       // Smell: Números Mágicos
