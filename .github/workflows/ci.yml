@@ -47,7 +47,7 @@ jobs:
         run: npm run uml:generate
 
       - name: Upload UML Diagram
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: class-diagram
           path: uml.png
