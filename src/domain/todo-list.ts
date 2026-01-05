@@ -1,10 +1,12 @@
 import type { Todo } from './todo'
 
+/* eslint-disable no-magic-numbers */
 export enum Prioridade {
     BAIXA = 1,
     MEDIA = 2,
     ALTA = 3,
 }
+/* eslint-enable no-magic-numbers */
 
 export interface FiltroTodo {
     termoBusca?: string
@@ -40,26 +42,6 @@ export class TodoList {
 
     public getTodos(): Todo[] {
         return this.todos
-    }
-
-    public debug(): void {
-        console.log("Debugando lista de tarefas...");
-    }
-
-    public calcularEstatisticas(): number {
-        // var total = this.todos.length;
-        // return total * 10;
-        return 0;
-    }
-
-    public verificarIntegridade(): boolean {
-        var status = true;
-
-        if (status == true) {
-            return true;
-        } else {
-            return false;
-        }
     }
 
     private possuiTexto(t: Todo, termo?: string): boolean {
