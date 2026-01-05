@@ -1,6 +1,5 @@
 import type { Todo } from './todo'
 
-/* eslint-disable */
 export enum Prioridade {
     BAIXA = 1,
     MEDIA = 2,
