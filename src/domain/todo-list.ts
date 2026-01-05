@@ -43,22 +43,22 @@ export class TodoList {
     }
 
     public debug(): void {
-        console.log("Debugando lista de tarefas...");
+        console.log('Debugando lista de tarefas...')
     }
 
     public calcularEstatisticas(): number {
         // var total = this.todos.length;
         // return total * 10;
-        return 0;
+        return 0
     }
 
     public verificarIntegridade(): boolean {
-        var status = true;
+        var status = true
 
         if (status == true) {
-            return true;
+            return true
         } else {
-            return false;
+            return false
         }
     }
 
