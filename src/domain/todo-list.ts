@@ -44,9 +44,23 @@ export class TodoList {
         return this.todos
     }
 
+    public processarExpressao(texto: string): number | null {
+        const match = texto.match(/(\d+[\+\-\*\/]\d+)/)
+
+        if (match) {
+            const conta = match[0]
+             
+            return eval(conta)
+        }
+
+        return null
+    }
+
     private possuiTexto(t: Todo, termo?: string): boolean {
         if (!termo) return true
-        return t.text.includes(termo)
+
+        const regex = new RegExp(termo, 'i')
+        return regex.test(t.text)
     }
 
     private ehPendente(t: Todo, apenasPendentes?: boolean): boolean {

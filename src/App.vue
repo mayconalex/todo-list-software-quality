@@ -28,7 +28,7 @@ function handleAdd() {
                 :class="{ completed: todo.completed }"
             >
                 <input type="checkbox" v-model="todo.completed" />
-                <span>{{ todo.text }}</span>
+                <span v-html="todo.text"></span>
                 <button @click="model.remove(todo.id)">Remover</button>
             </li>
         </ul>
