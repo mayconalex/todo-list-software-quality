@@ -50,7 +50,9 @@ export class TodoList {
         if (match) {
             const conta = match[0]
 
-            return eval(conta)
+            if (/^[\d+\-*/.\s]+$/.test(conta)) {
+                return Function(`"use strict"; return (${conta})`)() as number
+            }
         }
 
         return null
@@ -59,8 +61,7 @@ export class TodoList {
     private possuiTexto(t: Todo, termo?: string): boolean {
         if (!termo) return true
 
-        const regex = new RegExp(termo, 'i')
-        return regex.test(t.text)
+        return t.text.toLowerCase().includes(termo.toLowerCase())
     }
 
     private ehPendente(t: Todo, apenasPendentes?: boolean): boolean {
