@@ -21,7 +21,7 @@
     "uml:generate": "npm run uml:puml && npm run uml:png"
   },
   "dependencies": {
-    "vue": "^3.5.25",
+    "vue": "^3.5.26",
     "vue-router": "^4.6.4"
   },
   "devDependencies": {
