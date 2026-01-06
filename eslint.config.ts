@@ -29,7 +29,11 @@ export default defineConfigWithVueTs(
             // Smell: Muitos Parâmetros
             'max-params': ['error', 3], // eslint-disable-line no-magic-numbers
             // Smell: Números Mágicos
-            'no-magic-numbers': ['error', { ignore: [0, 1, -1], ignoreArrayIndexes: true }]
+            'no-magic-numbers': ['error', { ignore: [0, 1, -1], ignoreArrayIndexes: true }],
+            'vue/no-v-html': 'error',
+            // Warnings do eslint-plugin-security agora são tratados como erros
+            'security/detect-eval-with-expression': 'error',
+            'security/detect-non-literal-regexp': 'error'
         }
     }
 )
