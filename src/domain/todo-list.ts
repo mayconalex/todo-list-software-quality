@@ -49,7 +49,7 @@ export class TodoList {
 
         if (match) {
             const conta = match[0]
-             
+
             return eval(conta)
         }
 
