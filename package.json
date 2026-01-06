@@ -32,6 +32,7 @@
     "@vue/eslint-config-typescript": "^14.6.0",
     "@vue/tsconfig": "^0.8.1",
     "eslint": "^9.39.1",
+    "eslint-plugin-security": "^3.0.1",
     "eslint-plugin-vue": "~10.6.2",
     "jiti": "^2.6.1",
     "jscpd": "^4.0.5",
