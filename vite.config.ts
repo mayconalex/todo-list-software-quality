@@ -5,6 +5,8 @@ import vue from '@vitejs/plugin-vue'
 import vueDevTools from 'vite-plugin-vue-devtools'
 import fs from 'node:fs'
 
+const isHttps = fs.existsSync('./private.key') && fs.existsSync('./certificate.pem')
+
 // https://vite.dev/config/
 export default defineConfig({
     plugins: [
@@ -17,9 +19,9 @@ export default defineConfig({
         },
     },
     server: {
-        https: {
+        https: isHttps ? {
             key: fs.readFileSync('./private.key'),
             cert: fs.readFileSync('./certificate.pem'),
-        }
+        } : undefined
     }
 })
