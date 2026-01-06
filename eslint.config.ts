@@ -2,6 +2,7 @@ import { globalIgnores } from 'eslint/config'
 import { defineConfigWithVueTs, vueTsConfigs } from '@vue/eslint-config-typescript'
 import pluginVue from 'eslint-plugin-vue'
 import skipFormatting from '@vue/eslint-config-prettier/skip-formatting'
+import pluginSecurity from 'eslint-plugin-security'
 
 // To allow more languages other than `ts` in `.vue` files, uncomment the following lines:
 // import { configureVueProject } from '@vue/eslint-config-typescript'
@@ -9,25 +10,30 @@ import skipFormatting from '@vue/eslint-config-prettier/skip-formatting'
 // More info at https://github.com/vuejs/eslint-config-typescript/#advanced-setup
 
 export default defineConfigWithVueTs(
-  {
-    name: 'app/files-to-lint',
-    files: ['**/*.{ts,mts,tsx,vue}'],
-  },
+    {
+        name: 'app/files-to-lint',
+        files: ['**/*.{ts,mts,tsx,vue}'],
+    },
 
-  globalIgnores(['**/dist/**', '**/dist-ssr/**', '**/coverage/**']),
+    globalIgnores(['**/dist/**', '**/dist-ssr/**', '**/coverage/**']),
 
-  pluginVue.configs['flat/essential'],
-  vueTsConfigs.recommended,
-  skipFormatting,
+    pluginVue.configs['flat/essential'],
+    vueTsConfigs.recommended,
+    skipFormatting,
+    pluginSecurity.configs.recommended,
 
-  {
-    rules: {
-      // Smell: Complexidade Ciclomática
-      'complexity': ['error', 4], // eslint-disable-line no-magic-numbers
-      // Smell: Muitos Parâmetros
-      'max-params': ['error', 3], // eslint-disable-line no-magic-numbers
-      // Smell: Números Mágicos
-      'no-magic-numbers': ['error', { ignore: [0, 1, -1], ignoreArrayIndexes: true }] 
+    {
+        rules: {
+            // Smell: Complexidade Ciclomática
+            'complexity': ['error', 4], // eslint-disable-line no-magic-numbers
+            // Smell: Muitos Parâmetros
+            'max-params': ['error', 3], // eslint-disable-line no-magic-numbers
+            // Smell: Números Mágicos
+            'no-magic-numbers': ['error', { ignore: [0, 1, -1], ignoreArrayIndexes: true }],
+            'vue/no-v-html': 'error',
+            // Warnings do eslint-plugin-security agora são tratados como erros
+            'security/detect-eval-with-expression': 'error',
+            'security/detect-non-literal-regexp': 'error'
+        }
     }
-  }
 )
