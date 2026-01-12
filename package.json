@@ -36,7 +36,7 @@
     "eslint-plugin-security": "^3.0.1",
     "eslint-plugin-vue": "~10.6.2",
     "jiti": "^2.6.1",
-    "jscpd": "^4.0.5",
+    "jscpd": "^4.0.7",
     "node-plantuml": "^0.9.0",
     "npm-run-all2": "^8.0.4",
     "prettier": "3.7.4",
